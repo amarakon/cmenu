@@ -17,15 +17,7 @@ base() {
     done
 }
 
-copy() {
-    if [ -n "$copy" ] && [ "$cmenu" != "" ]; then
-	if [ ! -z $selection ]; then
-	    printf "$cmenu" | xclip -r -i -selection $selection
-	else
-	    printf "$cmenu" | xclip -r -i -selection clipboard
-	fi
-    fi
-}
+copy() { [ -n "$copy" ] && [ "$cmenu" != "" ] && printf "$cmenu" | xclip -r -i -selection $selection; }
 
 Clear() {
     menu=`printf "Clear" | dmenu -p $cmenu`
@@ -39,7 +31,7 @@ help() {
     printf "Usage:	`basename $0` [options]
 
 Options:
--c|--copy │ Copy the result (\"primary\", \"secondary\", \"clipboard\" or \"buffer-cut\", the default is \"clipboard\")
+-c|--copy │ Copy the result (\"primary\", \"secondary\", \"clipboard\" or \"buffer-cut\")
 -h|--help │ Print this help message and exit
 "
 }
@@ -48,7 +40,7 @@ parse_opts() {
     die() { echo "$*" >&2; exit 2; }  # complain to STDERR and exit with error
     needs_arg() { [ -z "$OPTARG" ] && die "No arg for --$OPT option"; }
 
-    while getopts hpcosil:fa-: OPT; do
+    while getopts hc:-: OPT; do
 	# support long options: https://stackoverflow.com/a/28466267/519360
 	if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
 	    OPT="${OPTARG%%=*}"       # extract long option name
@@ -57,7 +49,7 @@ parse_opts() {
 	fi
 	case "$OPT" in
 	    h | help)	help ; exit 0 ;;
-	    c | copy)	copy=1 ; selection="$OPTARG" ;;
+	    c | copy)	needs_arg ; copy=1 selection="$OPTARG" ;;
 	    ??*)	die "Illegal option --$OPT" ;;  # bad long option
 	    ?)		exit 2 ;;  # bad short option (error reported via getopts)
 	esac

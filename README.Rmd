@@ -9,11 +9,11 @@ This is useful if you want a quick solution to a math equation.
 # Usage
 
 Simply invoke the `` `# user` cmenu `` command and enter anything you want.
-Use the `--copy` or `-c` argument if you want to copy the output to your clipboard.
+Use the `--copy` or `-c` argument if you want to copy the output.
 
 ```sh
 `# user` cmenu
-`# user` cmenu -c # copy the output to clipboard
+`# user` cmenu -c clipboard # copy the output to clipboard
 ```
 
 
