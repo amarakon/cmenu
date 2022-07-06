@@ -11,6 +11,7 @@ Cmenu – Calculator Menu
 -   [Uninstallation](#uninstallation)
     -   [Universal](#universal-1)
     -   [Gentoo](#gentoo-1)
+-   [Configuration](#configuration)
 
 Cmenu is a simple shell script which allows you to calculate things.
 This is useful if you want a quick solution to a math equation.
@@ -22,7 +23,7 @@ want. Use the `--copy` or `-c` argument if you want to copy the output.
 
 ``` sh
 `# user` cmenu
-`# user` cmenu -c clipboard # copy the output to clipboard
+`# user` cmenu -c clipboard # copy the output to the clipboard
 ```
 
 ## Dependencies
@@ -64,4 +65,14 @@ want. Use the `--copy` or `-c` argument if you want to copy the output.
 # Remove my overlay (optional)
 `# root` eselect-repository remove -f amarlay
 `# root` emerge --sync
+```
+
+## Configuration
+
+You can change the default options for Cmenu via the configuration file.
+The configuration file is located in the configuration directory, so
+usually `~/.config/cmenu/cmenu.conf`. Here is an example configuration:
+
+``` sh
+copy="primary"
 ```

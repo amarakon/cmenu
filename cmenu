@@ -1,6 +1,12 @@
 #!/bin/sh
 
-main() { parse_opts "$@" ; base "$@"; }
+main() {
+    : "${config_dir:=${XDG_CONFIG_HOME:-$HOME/.config}/`basename $0`}"
+    : "${config_file:=$config_dir/`basename $0`.conf}"
+    [ -f "$config_file" ] && . "$config_file"
+
+    parse_opts "$@" ; base "$@"
+}
 
 base() {
     cmenu="Cmenu"
