@@ -22,7 +22,7 @@ base() {
     done
 }
 
-copy() { [ -n "$copy" ] && [ "$cmenu" != "" ] && printf "$cmenu" | xclip -r -i -selection $selection; }
+copy() { [ ! -n "$no_copy" ] && [ ! -z "$copy" ] && [ "$cmenu" != "" ] && printf "$cmenu" | xclip -r -i -selection $copy; }
 
 Clear() {
     menu=`printf "Clear" | dmenu -p $cmenu`
@@ -36,8 +36,9 @@ help() {
     printf "Usage:	`basename $0` [options]
 
 Options:
--c|--copy │ Copy the result (\"primary\", \"secondary\", \"clipboard\" or \"buffer-cut\")
--h|--help │ Print this help message and exit
+-c|--copy    │ Copy the result (\"primary\", \"secondary\", \"clipboard\" or \"buffer-cut\")
+   --no-copy │ Do not copy (always overrides --copy)
+-h|--help    │ Print this help message and exit
 "
 }
 
@@ -54,7 +55,8 @@ parse_opts() {
 	fi
 	case "$OPT" in
 	    h | help)	help ; exit 0 ;;
-	    c | copy)	needs_arg ; copy=1 selection="$OPTARG" ;;
+	    c | copy)	needs_arg ; copy="$OPTARG" ;;
+	    no-copy)	no_copy=1 ;;
 	    ??*)	die "Illegal option --$OPT" ;;  # bad long option
 	    ?)		exit 2 ;;  # bad short option (error reported via getopts)
 	esac
