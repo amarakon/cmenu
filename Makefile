@@ -1,7 +1,7 @@
-PROG=rmenu
+PROG=cmenu
 PREFIX=/usr/local
 BINDIR=${PREFIX}/bin
-LICENSEDIR=${PREFIX}/share/licenses/rmenu
+LICENSEDIR=${PREFIX}/share/licenses/cmenu
 
 install:
 	chmod 755 ${PROG}
