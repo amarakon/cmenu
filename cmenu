@@ -12,7 +12,12 @@ base() {
 	[ "$menu" = "" ] && exit 0
 	
 	Clear
-	[ "$menu" != "" ] && cmenu=$(printf $(($cmenu$menu)))
+	if [ "$menu" != "" ];then
+	    case "`printf "$menu" | cut -b 1`" in
+		''|*[!0-9]*) cmenu=$(printf $(($cmenu$menu))) ;;
+		*) cmenu=$(printf $(($menu))) ;;
+	    esac
+	fi
 	copy "$@"
     done
 }
