@@ -1,4 +1,4 @@
-Rmenu – R Menu
+Cmenu – Calculator Menu
 ================
 
 ## Contents
@@ -12,33 +12,32 @@ Rmenu – R Menu
     -   [Universal](#universal-1)
     -   [Gentoo](#gentoo-1)
 
-Rmenu is a simple shell script which allows you to run R expressions in
-Dmenu. This is useful if you want a quick solution to a math equation.
-Or if you just want to run a general R expression.
+Cmenu is a simple shell script which allows you to calculate things.
+This is useful if you want a quick solution to a math equation.
 
 ## Usage
 
-Simply invoke the `rmenu` command and enter anything you want. Use the
-`--copy` or `-c` argument if you want to copy the output to your
-clipboard.
+Simply invoke the `` `# user` cmenu `` command and enter anything you
+want. Use the `--copy` or `-c` argument if you want to copy the output
+to your clipboard.
 
 ``` sh
-`# user` rmenu
-`# user` rmenu -c # copy output to clipboard
+`# user` cmenu
+`# user` cmenu -c # copy the output to clipboard
 ```
 
 ## Dependencies
 
-1.  Dmenu
-2.  Xclip (if you want to use the `copy` argument)
+1.  dmenu
+2.  xclip (if you want to use the `copy` argument)
 
 ## Installation
 
 ### Universal
 
 ``` sh
-`# user` git clone https://github.com/amarakon/rmenu
-`# user` cd rmenu
+`# user` git clone https://github.com/amarakon/cmenu
+`# user` cd cmenu
 `# root` make install
 ```
 
@@ -47,7 +46,7 @@ clipboard.
 ``` sh
 `# root` eselect repository add amarlay git https://github.com/amarakon/amarlay
 `# root` emerge --sync amarlay
-`# root` emerge x11-misc/rmenu
+`# root` emerge x11-misc/cmenu
 ```
 
 ## Uninstallation
@@ -55,14 +54,15 @@ clipboard.
 ### Universal
 
 ``` sh
-`# user` cd rmenu
+`# user` cd cmenu
 `# root` make uninstall
 ```
 
 ### Gentoo
 
 ``` sh
-`# root` emerge -c x11-misc/rmenu
+`# root` emerge -c x11-misc/cmenu
 # Remove my overlay (optional)
-`# root`
+`# root` eselect-repository remove -f amarlay
+`# root` emerge --sync
 ```
