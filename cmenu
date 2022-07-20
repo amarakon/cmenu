@@ -1,8 +1,8 @@
 #!/bin/sh
 
 main() {
-    : "${config_dir:=${XDG_CONFIG_HOME:-$HOME/.config}/`basename $0`}"
-    : "${config_file:=$config_dir/`basename $0`.conf}"
+    : "${config_dir:=${XDG_CONFIG_HOME:-$HOME/.config}/$(basename $0)}"
+    : "${config_file:=$config_dir/$(basename $0).conf}"
     [ -f "$config_file" ] && . "$config_file"
 
     parse_opts "$@" ; base "$@"
@@ -19,7 +19,7 @@ base() {
 	
 	Clear
 	if [ "$menu" != "" ];then
-	    case "`printf "$menu" | cut -b 1`" in
+	    case "$(printf "$menu" | cut -b 1)" in
 		''|*[!0-9]*) cmenu=$(printf $(($cmenu$menu))) ;;
 		*) cmenu=$(printf $(($menu))) ;;
 	    esac
@@ -31,15 +31,15 @@ base() {
 copy() { [ ! -n "$no_copy" ] && [ ! -z "$copy" ] && [ "$cmenu" != "" ] && printf "$cmenu" | xclip -r -i -selection $copy; }
 
 Clear() {
-    menu=`printf "Clear" | dmenu -p $cmenu`
+    menu=$(printf "Clear" | dmenu -p $cmenu)
     while [ "$menu" = "Clear" ]; do
-	menu=`printf "Clear" | dmenu -p "Cmenu"`
+	menu=$(printf "Clear" | dmenu -p "Cmenu")
 	cmenu=""
     done
 }
 
 help() {
-    printf "Usage:	`basename $0` [options]
+    printf "Usage:	$(basename $0) [options]
 
 Options:
 -c|--copy    │ Copy the result (\"primary\", \"secondary\", \"clipboard\" or \"buffer-cut\")
