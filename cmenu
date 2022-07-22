@@ -9,7 +9,7 @@ main() {
 }
 
 base() {
-    cmenu="Cmenu" ; math() { bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//'; }
+    cmenu=0 ; math() { bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//'; }
     Clear
     [ "$menu" != "" ] && cmenu=$(echo "0$menu" | math)
     copy "$@"
@@ -33,7 +33,7 @@ copy() { [ ! -n "$no_copy" ] && [ ! -z "$copy" ] && [ "$cmenu" != "" ] && printf
 Clear() {
     menu=$(printf "Clear" | dmenu -p $cmenu)
     while [ "$menu" = "Clear" ]; do
-	menu=$(printf "Clear" | dmenu -p "Cmenu")
+	menu=$(printf "Clear" | dmenu -p 0)
 	cmenu=""
     done
 }
