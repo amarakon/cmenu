@@ -9,9 +9,9 @@ main() {
 }
 
 base() {
-    cmenu="Cmenu"
+    cmenu="Cmenu" ; math() { bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//'; }
     Clear
-    [ "$menu" != "" ] && cmenu=$(printf $(($menu)))
+    [ "$menu" != "" ] && cmenu=$(echo "0$menu" | math)
     copy "$@"
 
     while true; do
@@ -20,8 +20,8 @@ base() {
 	Clear
 	if [ "$menu" != "" ];then
 	    case "$(printf "$menu" | cut -b 1)" in
-		''|*[!0-9]*) cmenu=$(printf $(($cmenu$menu))) ;;
-		*) cmenu=$(printf $(($menu))) ;;
+		''|*[!0-9]*) cmenu=$(echo "$cmenu$menu" | math) ;;
+		*) cmenu=$(echo "0$menu" | math) ;;
 	    esac
 	fi
 	copy "$@"
