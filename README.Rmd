@@ -3,6 +3,8 @@ title: Cmenu – Calculator Menu
 output: amaryaml::github
 ---
 
+![](preview.gif)
+
 Cmenu is a simple shell script which allows you to calculate things.
 This is useful if you want a quick solution to a math equation.
 

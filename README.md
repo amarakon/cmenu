@@ -13,6 +13,8 @@ Cmenu – Calculator Menu
     -   [Gentoo](#gentoo-1)
 -   [Configuration](#configuration)
 
+![](preview.gif)
+
 Cmenu is a simple shell script which allows you to calculate things.
 This is useful if you want a quick solution to a math equation.
 
