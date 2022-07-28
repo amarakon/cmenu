@@ -49,7 +49,7 @@ Options:
 }
 
 parse_opts() {
-    die() { echo "$*" >&2; exit 2; }  # complain to STDERR and exit with error
+    die() { printf "$*\n" >&2; exit 2; }  # complain to STDERR and exit with error
     needs_arg() { [ -z "$OPTARG" ] && die "No arg for --$OPT option"; }
 
     while getopts hc:-: OPT; do
