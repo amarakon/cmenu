@@ -28,7 +28,7 @@ base() {
     done
 }
 
-copy() { [ ! -n "$no_copy" ] && [ ! -z "$copy" ] && [ "$cmenu" != "" ] && printf "$cmenu" | xclip -r -i -selection $copy; }
+copy() { [ ! -n "$no_copy" ] && [ ! -z "$copy" ] && [ "$cmenu" != "" ] && printf "$cmenu" | xclip -i -selection $copy; }
 
 Clear() {
     menu=$(printf "Clear" | dmenu -p $cmenu)
